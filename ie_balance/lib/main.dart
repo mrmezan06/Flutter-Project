@@ -204,9 +204,10 @@ class _HomePageState extends State<HomePage>
               ],
             ),
           ),
-          SizedBox(
+          Container(
             width: double.infinity,
             height: double.infinity,
+            margin: const EdgeInsets.only(bottom: 10),
             //color: Colors.red,
             child: SingleChildScrollView(
               child: Column(
