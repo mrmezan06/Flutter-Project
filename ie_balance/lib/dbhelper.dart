@@ -38,7 +38,7 @@ class DatabaseHelper {
   /* Get All Data of incomesrc table */
   Future<List<Balance>> getAllTransaction() async {
     Database db = await instance.database;
-    var incomesrcs = await db.query('trasum', orderBy: 'ctime');
+    var incomesrcs = await db.query('trasum', orderBy: 'id');
     List<Balance> incomesrcList = incomesrcs.isNotEmpty
         ? incomesrcs.map((c) => Balance.fromMap(c)).toList()
         : [];
