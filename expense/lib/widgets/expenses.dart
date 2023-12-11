@@ -25,15 +25,27 @@ class _ExpensesState extends State<Expenses> {
       category: Category.bazar,
     ),
   ];
+  void _addExpense(Expense expense) {
+    setState(() {
+      _regExpenses.add(expense);
+    });
+  }
 
   void _openAddExpenseOverlay() {
     showModalBottomSheet(
-        context: context, builder: (context) => const NewExpense());
+        context: context,
+        isScrollControlled: true,
+        builder: (context) => NewExpense(
+              onAddExpense: _addExpense,
+            ));
   }
+
+ 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text('Expense Tracker'),
         actions: [
