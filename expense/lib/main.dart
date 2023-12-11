@@ -4,5 +4,6 @@ import 'package:expense/widgets/expenses.dart';
 void main() {
   runApp(const MaterialApp(
     home: Expenses(),
+    debugShowCheckedModeBanner: false,
   ));
 }
