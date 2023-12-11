@@ -40,6 +40,12 @@ class _ExpensesState extends State<Expenses> {
             ));
   }
 
+  void _removeExpense(Expense expense) {
+    setState(() {
+      _regExpenses.remove(expense);
+    });
+  }
+
  
 
   @override
@@ -60,7 +66,10 @@ class _ExpensesState extends State<Expenses> {
         child: Column(
           children: [
             const Text('The Chart'),
-            ExpensesList(expenses: _regExpenses)
+            ExpensesList(
+              expenses: _regExpenses,
+              onRemoveExpense: _removeExpense,
+            )
           ],
         ),
       ),
