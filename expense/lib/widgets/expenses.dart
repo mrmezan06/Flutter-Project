@@ -71,6 +71,11 @@ class _ExpensesState extends State<Expenses> {
   @override
   Widget build(BuildContext context) {
 
+    // Find the total width of the screen
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+
+
     Widget mainContent = const Center(
       child: Text('No Expenses added yet!'),
     );
@@ -95,7 +100,8 @@ class _ExpensesState extends State<Expenses> {
       ),
 
       body: SafeArea(
-        child: Column(
+        child: width < height
+            ? Column(
           children: [
             Chart(expenses: _regExpenses),
             const SizedBox(
@@ -103,6 +109,22 @@ class _ExpensesState extends State<Expenses> {
             ),
             mainContent
           ],
+              )
+            : Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const SizedBox(
+                    width: 25,
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Chart(expenses: _regExpenses),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: mainContent,
+                  ),
+                ],
         ),
       ),
     );
