@@ -117,13 +117,9 @@ class _ExpensesState extends State<Expenses> {
                     width: 25,
                   ),
                   Expanded(
-                    flex: 1,
                     child: Chart(expenses: _regExpenses),
                   ),
-                  Expanded(
-                    flex: 2,
-                    child: mainContent,
-                  ),
+                  mainContent,
                 ],
         ),
       ),
