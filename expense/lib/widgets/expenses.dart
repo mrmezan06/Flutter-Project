@@ -41,15 +41,46 @@ class _ExpensesState extends State<Expenses> {
   }
 
   void _removeExpense(Expense expense) {
+    final expensIndex = _regExpenses.indexOf(expense);
     setState(() {
       _regExpenses.remove(expense);
     });
+
+    // Clear previous snackbar if any
+    ScaffoldMessenger.of(context).clearSnackBars();
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        duration: const Duration(seconds: 3),
+        content: const Text('Expense removed successfully!'),
+        action: SnackBarAction(
+          label: 'Undo',
+          onPressed: () {
+            setState(() {
+              _regExpenses.insert(expensIndex, expense);
+            });
+          },
+        ),
+      ),
+    );
   }
 
  
 
   @override
   Widget build(BuildContext context) {
+
+    Widget mainContent = const Center(
+      child: Text('No Expenses added yet!'),
+    );
+
+    if (_regExpenses.isNotEmpty) {
+      mainContent = ExpensesList(
+        expenses: _regExpenses,
+        onRemoveExpense: _removeExpense,
+      );
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -66,10 +97,10 @@ class _ExpensesState extends State<Expenses> {
         child: Column(
           children: [
             const Text('The Chart'),
-            ExpensesList(
-              expenses: _regExpenses,
-              onRemoveExpense: _removeExpense,
-            )
+            const SizedBox(
+              height: 10,
+            ),
+            mainContent
           ],
         ),
       ),
