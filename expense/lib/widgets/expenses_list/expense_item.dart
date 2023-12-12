@@ -15,8 +15,10 @@ class ExpenseItem extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(expense.title),
+            Text(expense.title,
+                style: const TextStyle(fontWeight: FontWeight.bold)),
             const SizedBox(
               height: 4,
             ),

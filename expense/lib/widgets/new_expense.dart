@@ -138,7 +138,7 @@ class _NewExpenseState extends State<NewExpense> {
                       child: Row(
                         children: [
                           Icon(categoryIcons[category]),
-                          const SizedBox(width: 4),
+                          const SizedBox(width: 16),
                           Text(category.name.toUpperCase()),
                         ],
                       ),
@@ -146,7 +146,7 @@ class _NewExpenseState extends State<NewExpense> {
                   }).toList(),
                   onChanged: (value) {
                     if (value == null) return;
-
+                
                     setState(() {
                       _selectedCategory = value;
                     });
